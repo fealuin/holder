@@ -51,7 +51,7 @@ gulp.task('todo', function() {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('build', gulp.series('jshint'), function() {
+gulp.task('build', gulp.series('jshint', function() {
     return gulp.src('src/index.js')
         .pipe(webpack({
             output: {
@@ -61,9 +61,9 @@ gulp.task('build', gulp.series('jshint'), function() {
             }
         }))
         .pipe(gulp.dest('./'));
-});
+}));
 
-gulp.task('bundle', gulp.series('build'), function() {
+gulp.task('bundle', gulp.series('build', function() {
     return gulp.src([
             'src/lib/vendor/polyfills.js',
             'holder.js',
@@ -71,16 +71,16 @@ gulp.task('bundle', gulp.series('build'), function() {
         ])
         .pipe(concat('holder.js'))
         .pipe(gulp.dest('./'));
-});
+}));
 
-gulp.task('minify', gulp.series('bundle'), function() {
+gulp.task('minify', gulp.series('bundle', function() {
     return gulp.src('holder.js')
         .pipe(uglify())
         .pipe(rename('holder.min.js'))
         .pipe(gulp.dest('./'));
-});
+}));
 
-gulp.task('banner', gulp.series('minify'), function() {
+gulp.task('banner', gulp.series('minify', function() {
     return gulp.src(['holder*.js'])
         .pipe(replace('%version%', pkg.version))
         .pipe(header(banner, {
@@ -89,7 +89,8 @@ gulp.task('banner', gulp.series('minify'), function() {
             build: build
         }))
         .pipe(gulp.dest('./'));
-});
+
+}));
 
 gulp.task('beautify', function() {
     return gulp.src(['src/lib/*.js'])
@@ -108,7 +109,7 @@ gulp.task('watch', function() {
     gulp.watch('src/*.js', ['default']);
 });
 
-gulp.task('default', gulp.series('bundle', 'minify', 'banner', 'meteor'), function() {
+gulp.task('default', gulp.series('bundle', 'minify', 'banner', 'meteor', function() {
     gulputil.log('Finished build ' + build);
     build = generateBuild();
-});
+}));
