@@ -42,7 +42,7 @@ module.exports = (function() {
             utils.cssProps({
                 'fill': tgProps.fill,
                 'font-weight': tgProps.font.weight,
-                'font-family': tgProps.font.family + ', monospace',
+                'font-family': tgProps.font.family + ',' +tgProps.font.style,
                 'font-size': tgProps.font.size + tgProps.font.units
             }) + ' } ';
         var commentNode = xml.createComment('\n' + 'Source URL: ' + holderURL + generatorComment);
