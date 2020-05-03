@@ -2328,7 +2328,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return utils.cssProps({
 	    'fill': properties.fill,
 	    'font-weight': properties.font.weight,
-	    'font-family': properties.font.family,
+	    'font-family': properties.font.family + ', sans-serif',
 	    'font-size': properties.font.size + properties.font.units
 	  });
 	}
