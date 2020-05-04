@@ -730,7 +730,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        weight: scene.theme.fontweight ? scene.theme.fontweight : 'bold'
 	    };
 
-	    scene.text = scene.theme.text || Math.floor(scene.width) + 'x' + Math.floor(scene.height);
+	    scene.text = '';
+	    //scene.theme.text || Math.floor(scene.width) + 'x' + Math.floor(scene.height);
 
 	    scene.noWrap = scene.theme.nowrap || scene.flags.nowrap;
 
